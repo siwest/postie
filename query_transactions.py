@@ -17,6 +17,8 @@ def run(start, end):
     else:
         end_date = end
     if not start:
+        if isinstance(end_date, str):
+            end_date = datetime.datetime.strptime(end_date, "%Y-%m-%d").date()
         start_date = end_date - datetime.timedelta(days=365 * 5)
     else:
         start_date = start
@@ -27,13 +29,11 @@ def run(start, end):
     total_sales = (
         get_total_sales(db_cursor, config.table_name, start_date, end_date)[0] or 0
     )
-
     locale.setlocale(locale.LC_ALL, "")
     money = locale.currency(total_sales, grouping=True)
-
     print(f"\nTotal sales from {start_date} to {end_date} is {money}\n")
 
-    db_connection.close()
+    disconnect_sqllite_database(db_connection)
 
 
 def connect_sqllite_database(db_name):

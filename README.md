@@ -28,7 +28,11 @@ Each file contains rows with the following data:
 
 Create a small python script/app that loads the data into a sqlite database.
 
-**Solution to Task 1 can be called with `python load_transactions.py`**
+**Solution to Task 1 can be called with the following command line python program:** 
+
+```shell
+python load_transactions.py
+```
 
 ### Task 2
 
@@ -36,11 +40,43 @@ Create a small python script/app that takes a range of dates and sums the sales 
 
 **Solution to Task 2 can be called with any of the following options**
 
-`python query_transactions.py`
-`python query_transactions.py -s '2017-07-03'`
-`python query_transactions.py -start '2017-07-01'`
-`python query_transactions.py -end '2017-08-01'`
-`python query_transactions.py -s '2017-07-01' -e '2017-08-01'`
+
+```shell
+python query_transactions.py
+```
+
+
+> Total sales from 2015-10-07 11:00:42.385359 to 2020-10-05 11:00:42.385359 is $588,850.00
+
+
+
+
+```shell
+python query_transactions.py -s '2017-07-03'
+```
+
+
+> Total sales from 2017-07-03 to 2020-10-05 11:02:22.684169 is $181,583.00
+
+
+
+```shell
+python query_transactions.py -e '2017-07-02'
+```
+
+
+> Total sales from 2012-07-03 to 2017-07-02 is $407,267.00
+
+
+
+
+```shell
+python query_transactions.py -s '2017-07-01' -e '2017-08-01'
+```
+
+> Total sales from 2017-07-01 to 2017-08-01 is $588,850.00
+
+
 
 If no end date is set, the default end date is the current date. If no start date is set, the start date defaults to 5 years before the end date.
 

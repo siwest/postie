@@ -37,7 +37,7 @@ def run(start, end):
 
 
 def connect_sqllite_database(db_name):
-    """Creates a connection obection to a local database file, or creates a
+    """Creates a connection object to a local database file, or creates a
     new one with the database name as `db_name`.
     """
     logging.warning("Connecting to sqlite3 database")
@@ -45,12 +45,15 @@ def connect_sqllite_database(db_name):
 
 
 def disconnect_sqllite_database(db_connection):
-    """Closes a connection obection."""
+    """Closes a connection object."""
     logging.warning("Closing connection to sqlite3 database")
     return db_connection.close()
 
 
 def get_total_sales(db_cursor, table_name, start_date, end_date):
+    """Returns a list of length one, containing total sales found 
+    in the target Transactions table
+    """
     return db_cursor.execute(
         f"""
         SELECT SUM(checkout_amount) as sales

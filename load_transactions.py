@@ -22,7 +22,7 @@ def run():
 
 
 def connect_sqllite_database(db_name):
-    """Creates a connection obection to a local database file, or creates a
+    """Creates a connection object to a local database file, or creates a
     new one with the database name as `db_name`.
     """
     logging.warning("Connecting to sqlite3 database")
@@ -30,7 +30,7 @@ def connect_sqllite_database(db_name):
 
 
 def disconnect_sqllite_database(db_connection):
-    """Closes a connection obection."""
+    """Closes a connection object."""
     logging.warning("Closing connection to sqlite3 database")
     return db_connection.close()
 
@@ -80,7 +80,10 @@ def import_transactions_from_bucket(region, bucket_name, db_connection, table_na
         df = pd.read_csv(f"s3://{bucket_name}/{file_name}")
         df["file_name"] = file_name
         df["created_at"] = datetime.datetime.now()
+        # Minor transform of columns required:
+        #  - Some columns are prepended with a spacwe
         df = df.rename(columns={k: k.replace(" ", "") for k in df.columns})
+        # Append to table if matching schema exists, otherwise a fix may be required
         df.to_sql(name=table_name, con=db_connection, if_exists="append")
 
 

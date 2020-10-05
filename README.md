@@ -34,5 +34,13 @@ Create a small python script/app that loads the data into a sqlite database.
 
 Create a small python script/app that takes a range of dates and sums the sales data ingested into the sqlite db for that time period.
 
-**Solution to Task 2 can be called with `python query_transactions.py`**
+**Solution to Task 2 can be called with any of the following options**
+
+`python query_transactions.py`
+`python query_transactions.py -s '2017-07-03'`
+`python query_transactions.py -start '2017-07-01'`
+`python query_transactions.py -end '2017-08-01'`
+`python query_transactions.py -s '2017-07-01' -e '2017-08-01'`
+
+If no end date is set, the default end date is the current date. If no start date is set, the start date defaults to 5 years before the end date.
 
